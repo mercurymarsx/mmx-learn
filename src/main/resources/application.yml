@@ -1,0 +1,30 @@
+# application
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ohmmx-learning
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8100
+
+---
+spring:
+  config:
+    activate:
+      on-profile: sit
+server:
+  port: 8200
+
+---
+spring:
+  config:
+    activate:
+      on-profile: uat
+server:
+  port: 8300

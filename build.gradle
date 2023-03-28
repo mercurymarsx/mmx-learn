@@ -1,0 +1,46 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url "https://maven.aliyun.com/repository/public" }
+		maven { url "https://maven.aliyun.com/repository/spring" }
+	}
+}
+
+plugins {
+	id 'java'
+	id 'eclipse-wtp'
+	id 'application'
+	id "org.springframework.boot" version "${springBootVersion}"
+	id "io.spring.dependency-management" version "${springDependencyManagementVersion}"
+}
+
+description = "mmx-learn"
+group = 'com.ohmmx'
+version = '1.0.0'
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+[compileJava, compileTestJava]*.options.collect { options ->
+	options.encoding = 'UTF-8'
+}
+
+dependencies {
+	implementation 'org.springframework:spring-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	runtimeOnly "com.mysql:mysql-connector-j:$mysqlConnectorVersion"
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://maven.aliyun.com/repository/public" }
+	maven { url "https://maven.aliyun.com/repository/spring" }
+}
+
+bootJar {
+	mainClassName = 'com.ohmmx.learn.LearnApplication'
+	destinationDirectory = file(project.buildDir)
+}
+
